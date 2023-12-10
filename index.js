@@ -22,11 +22,34 @@ app.get('/profile', (req,res)=>{
 
 });
 
-app.get('/contact', (req,res)=>{
+app.get('/profile/umesh', (req,res)=>{
 
-    res.send("hello from contact");
+    res.send("hello from umesh");
 
 });
+app.get('/profile/Umeshwari', (req,res)=>{
+
+    res.send("hello from umesh");
+
+});
+app.get('/profile/umadarling', (req,res)=>{
+
+    res.send("hello from umadarling");
+
+});
+app.get('/profile/umabasanti', (req,res)=>{
+
+    res.send("hello from umabasanti");
+
+});
+
+app.get('/profile/:username', (req,res)=>{
+
+    res.send(`hello from ${req.params.username}`);
+
+});
+
+
 
 
 app.listen(port);

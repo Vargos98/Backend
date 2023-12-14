@@ -6,14 +6,38 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/allusers', async(req,res)=>{
+  const allUsers = await userModal.find();
+  res.send(allUsers);
+})
+
+router.get('/oneUser', async(req,res)=>{
+  const oneUser = await userModal.findOne({username:"harsh"});
+  res.send(oneUser);
+})
+
+router.get('/delete', async (req,res)=>{
+  const deleted = await userModal.findOneAndDelete({
+    username:"harsh"
+  });
+  res.send(deleted);
+})
+
 router.get('/create', async function(req, res) {
   const createdUser = await userModal.create({
     username: "harsh",
     name: "harsh",
     age:25
+   
   });
-res.send(createdUser);
+  res.send(createdUser);
+
+
+
 
 });
+
+
+
 
 module.exports = router;

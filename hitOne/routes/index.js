@@ -1,10 +1,25 @@
 var express = require('express');
 var router = express.Router();
 const userModal = require("./users");
+const { render } = require('../app');
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  req.session.ban = true; // session implemented.
   res.render('index');
 });
+
+router.get("/checkBan", (req,res)=>{
+  if(req.session.ban === true){
+    res.send("you are banned")
+  }
+})
+
+router.get("/removeBan",(req,res)=>{
+  req.session.destroy((err)=>{
+    console.log(err);
+    res.send("Ban Removed");
+  })
+})
 
 router.get('/allusers', async(req,res)=>{
   const allUsers = await userModal.find();

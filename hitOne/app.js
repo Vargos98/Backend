@@ -22,7 +22,7 @@ app.use(session({
   //on the server as it prevents to store data 
   // which isnt named or initialized.
   
-  secret:"write anything or whatever you feel like"
+  secret:"write anything or whatever you feel like" // this is the String used to encrypt data.
 }));
 
 

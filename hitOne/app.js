@@ -6,12 +6,25 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var session =  require("express-session");
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// session creation.
+app.use(session({
+  resave:false, // this is changed to true only when data is changed else it stays false, So, it doesn't 
+  // resaves the data.
+  
+  saveUninitialized:false, //It helps minimize the load and prevents extra storage consumption
+  //on the server as it prevents to store data 
+  // which isnt named or initialized.
+  
+  secret:"write anything or whatever you feel like"
+}));
+
 
 app.use(logger('dev'));
 app.use(express.json());
